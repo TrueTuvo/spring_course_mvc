@@ -16,7 +16,21 @@
     Salary <form:input path="salary"/>
     <br>
     <br>
+    Department <form:select path="department">
+    <form:options items="${employee.departments}"/>
+</form:select>
+    <br>
+    <br>
+    Which car do you want?
+    <form:radiobuttons path="carBrand" items="${employee.carBrands}"/>
+    <br>
+    <br>
+    Foreign language(s)
+    <form:checkboxes path="languages" items="${employee.languageList}"/>
     <input type="submit" value="OK">
 </form:form>
+<br>
+<br>
+
 </body>
 </html>

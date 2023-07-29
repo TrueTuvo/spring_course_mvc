@@ -2,7 +2,7 @@
 <html>
 <body>
 <h2>
-    I wish You luck in spring MVC learning!!!
+    Employee information
 </h2>
 <br>
 <br>
