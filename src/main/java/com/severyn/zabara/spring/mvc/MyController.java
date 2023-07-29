@@ -2,9 +2,12 @@ package com.severyn.zabara.spring.mvc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -42,17 +45,10 @@ public class MyController {
 
 
     @RequestMapping("/showDetails")
-    public String showEmpDetails(@ModelAttribute("employee") Employee employee) {
-
-        String name = employee.getName();
-        employee.setName("Mr " + name);
-
-        String surName = employee.getSurName();
-        employee.setSurName(surName + "!");
-
-        int salary = employee.getSalary();
-        employee.setSalary(salary*10);
-
+    public String showEmpDetails(@Valid @ModelAttribute("employee") Employee employee, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "ask-emp-details-view";
+        }
         return "show-emp-details-view";
     }
 }

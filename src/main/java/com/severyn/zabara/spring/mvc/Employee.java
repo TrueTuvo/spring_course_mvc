@@ -1,12 +1,22 @@
 package com.severyn.zabara.spring.mvc;
 
+import com.severyn.zabara.spring.mvc.validation.CheckEmail;
+
+import javax.validation.constraints.*;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Employee {
-
+    @NotEmpty(message = "name is required field")
+    @NotBlank(message = "name is required field")
+    @Size(min = 2,max = 20,message = "name must be in range of 2-20 chars")
     private String name;
+    @NotEmpty(message = "surname is required field")
+    @NotBlank(message = "surname is required field")
+    @Size(min = 2,max = 20,message = "surname must be in range of 2-20 chars")
     private String surName;
+    @Min(value = 500, message = "must be greater then 499")
+    @Max(value = 1000, message = "must be less then 1001")
     private int salary;
     private String department;
     private Map<String, String> departments;
@@ -14,6 +24,11 @@ public class Employee {
     private Map<String, String> carBrands;
     private String[] languages;
     private Map<String, String> languageList;
+
+    @Pattern(regexp = "\\d{3}-\\d{2}-\\d{2}",message = "please user Pattern XXX-XX-XX")
+    private String phoneNumber;
+    @CheckEmail(value = "@gmail.com", message = "incorrect email")
+    private String email;
 
     public Employee() {
         departments = new HashMap<>();
@@ -65,6 +80,14 @@ public class Employee {
         this.departments = departments;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Map<String, String> getLanguageList() {
         return languageList;
     }
@@ -87,6 +110,14 @@ public class Employee {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public int getSalary() {
